@@ -1,0 +1,27 @@
+- route:
+    id: route-4bfc
+    from:
+      id: from-1637
+      description: broker.HiveMQ.com MQTT Publishing Service
+      uri: kamelet:mqtt-source
+      parameters:
+        topic: smh
+        brokerUrl: tcp://broker.hivemq.com
+      steps:
+        - log:
+            id: log-4b0c
+            description: console-log
+            message: ${body}
+            loggingLevel: INFO
+        - to:
+            id: to-881c
+            description: S3-bucket
+            uri: aws2-s3
+            parameters:
+              bucketNameOrArn: demo-smh
+              region: us-east-1
+              accessKey: AKIA2XAEBYFO2RGDY4N7
+              keyName: mqtt-msg.txt
+        - log:
+            id: log49a7
+            message: ${body} - completed thru s3

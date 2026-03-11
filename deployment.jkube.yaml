@@ -1,0 +1,9 @@
+spec:
+  replicas: 1
+  template:
+    spec:
+      serviceAccount: karavan
+      containers:
+        - env:
+          - name: JAVA_OPTS
+            value: "-Djava.net.preferIPv4Stack=true"
